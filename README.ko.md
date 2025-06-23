@@ -58,3 +58,10 @@ poetry run uvicorn src.app.main:app --reload
 ```
 
 API는 `http://localhost:8000/`에서 확인할 수 있으며, 인증 엔드포인트는 `/api/v1` 로 시작합니다 (예: `/api/v1/auth/sign-up`).
+
+## 스크린 공유
+
+WebRTC 시그널링을 위한 WebSocket 엔드포인트를 제공합니다. 클라이언트는
+`/api/v1/ws/screen-share/{room_id}` 경로로 접속하여 offer, answer, ICE candidate
+등의 메시지를 주고받을 수 있으며, 같은 방에 접속한 다른 사용자들에게 메시지가 전달됩니다.
+

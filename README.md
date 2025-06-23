@@ -60,3 +60,9 @@ poetry run uvicorn src.app.main:app --reload
 ```
 
 The API will be available at `http://localhost:8000/`. Authentication endpoints are prefixed with `/api/v1` (e.g. `/api/v1/auth/sign-up`).
+
+## Screen Sharing
+
+The backend exposes a WebSocket endpoint for WebRTC signalling. Clients join a room using
+`/api/v1/ws/screen-share/{room_id}` and exchange offers, answers and ICE candidates.
+All messages sent to the server are relayed to the other participants in the same room.
