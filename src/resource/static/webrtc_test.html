@@ -25,7 +25,8 @@
             const room = document.getElementById('room').value;
             const name = document.getElementById('name').value;
             if(!room) return alert('Room required');
-            ws = new WebSocket(`ws://${location.host}/api/v1/ws/webrtc/${room}?username=${encodeURIComponent(name)}`);
+            const protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+            ws = new WebSocket(`${protocol}://${location.host}/api/v1/ws/webrtc/${room}?username=${encodeURIComponent(name)}`);
             ws.onmessage = async ({ data }) => {
                 const msg = JSON.parse(data);
                 if (msg.type === 'offer') {
