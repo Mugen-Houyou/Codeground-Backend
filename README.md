@@ -91,3 +91,7 @@ more reliable negotiation, and the script automatically chooses `ws://` or
 `wss://` based on whether the page is served over HTTP or HTTPS. When a
 participant disconnects, a `leave` message is broadcast so others can clean up
 their peer connections.
+
+**Important:** modern browsers increasingly block plain `ws://` connections.
+When deploying anywhere other than `localhost`, run the server behind HTTPS and
+connect using `wss://` with a valid certificate.
