@@ -75,4 +75,19 @@ Any message sent over this socket will be broadcast to the other participants in
 
 ### Sample WebRTC Frontend
 
-A minimal HTML page is provided at `/static/webrtc_test.html` to try out the signaling endpoint. Open this page in multiple browsers and join the same room to establish a video chat. The page now supports more than two participants by opening a separate peer connection for each remote user. Media is obtained before connecting to the WebSocket for more reliable negotiation. The script automatically chooses `ws://` or `wss://` based on whether the page is served over HTTP or HTTPS. When a participant disconnects a `leave` message is broadcast so others can clean up the peer connection.
+A minimal HTML page is provided at `/static/webrtc_test.html` to try out the signaling endpoint.
+Run the backend server, then open the page in your browser:
+
+```bash
+poetry run uvicorn src.app.main:app --reload
+# then visit http://localhost:8000/static/webrtc_test.html
+```
+
+Enter a room name and username and press **Join**. Open the same page in other
+browsers or devices and join the same room to establish a video chat. The page
+supports any number of participants by opening a separate `RTCPeerConnection`
+for each remote user. Media is obtained before connecting to the WebSocket for
+more reliable negotiation, and the script automatically chooses `ws://` or
+`wss://` based on whether the page is served over HTTP or HTTPS. When a
+participant disconnects, a `leave` message is broadcast so others can clean up
+their peer connections.
