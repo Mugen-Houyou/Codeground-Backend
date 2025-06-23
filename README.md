@@ -72,6 +72,7 @@ username:
 ```
 
 Any message sent over this socket will be broadcast to the other participants in the same room.
+Each username must be unique within a room; attempts to join with an existing name will be rejected.
 
 ### Sample WebRTC Frontend
 
@@ -83,8 +84,8 @@ poetry run uvicorn src.app.main:app --reload
 # then visit http://localhost:8000/static/webrtc_test.html
 ```
 
-Enter a room name and username and press **Join**. Open the same page in other
-browsers or devices and join the same room to establish a video chat. The page
+Enter a room name and username and press **Join**. Usernames must be unique within
+each room. Open the same page in other browsers or devices and join the same room to establish a video chat. The page
 supports any number of participants by opening a separate `RTCPeerConnection`
 for each remote user. Media is obtained before connecting to the WebSocket for
 more reliable negotiation, and the script automatically chooses `ws://` or
