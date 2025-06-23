@@ -75,5 +75,4 @@ Any message sent over this socket will be broadcast to the other participants in
 
 ### Sample WebRTC Frontend
 
-A minimal HTML page is provided at `/static/webrtc_test.html` to try out the signaling endpoint. Open this page in multiple browsers and join the same room to establish a video chat. The page now supports more than two participants by opening a separate peer connection for each remote user.
-The script automatically chooses `ws://` or `wss://` based on whether the page is served over HTTP or HTTPS.
+A minimal HTML page is provided at `/static/webrtc_test.html` to try out the signaling endpoint. Open this page in multiple browsers and join the same room to establish a video chat. The page now supports more than two participants by opening a separate peer connection for each remote user. Media is obtained before connecting to the WebSocket for more reliable negotiation. The script automatically chooses `ws://` or `wss://` based on whether the page is served over HTTP or HTTPS. When a participant disconnects a `leave` message is broadcast so others can clean up the peer connection.
